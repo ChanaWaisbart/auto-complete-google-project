@@ -8,6 +8,7 @@ class Data:
     """
     'Data' holds the sentences trie and handle user requests.
     """
+
     def __init__(self, path):
         self.__sentences = SentencesDB()
         self.__path = path
@@ -25,14 +26,18 @@ class Data:
     def query(self, prefix, count, fix_type=None, location=None):
         # search for 'prefix' in 'self.__sentences' trie.
         res = []
+        lines = []
         for source in self.__sentences.query(prefix):
-            with open(source[0], "r") as data_file:
+            with open(source[0], "r", encoding="utf-8") as data_file:
                 line = data_file.readlines()[source[1]].strip()
+                if line in lines:
+                    continue
                 offset = clean_sentence(line).find(prefix)
                 score = self.calculate_score(fix_type, len(prefix), location)
                 res.append(AutoCompleteData(line, source[0].split("\\")[-1], offset, score))
+                lines.append(line)
             if len(res) == count:
-                return sorted(res, key=lambda k: (k.get_score(), k.get_complete_sentence()))
+                break
         return sorted(res, key=lambda k: (k.get_score(), k.get_complete_sentence()))
 
     def get_best_k_completion(self, prefix: str, k: int = 5) -> list[AutoCompleteData]:

@@ -20,15 +20,14 @@ class ManagerProgram:
         while True:
             # get sentence prefix from user and print the best k completions
             user_input = input("Enter your text: ")
-            last_input = user_input
+            last_input = user_input.lower()
             while user_input != "#":
                 best_completions = self.__data.get_best_k_completion(last_input)
                 for i, complete in enumerate(best_completions):
-                    print("{}. {}".format(i+1, complete))
+                    print("{}. {}".format(i + 1, complete))
                 if not len(best_completions):
-                    print("No results found.")
+                    print("No results found.\n")
                     user_input = "#"
                 else:
-                    user_input = input(last_input)
-                    last_input += user_input
-
+                    user_input = input("\n" + last_input)
+                    last_input += user_input.lower()

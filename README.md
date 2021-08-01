@@ -8,7 +8,8 @@
 In order to improve the user experience of the Google search engine, the development team decided to allow the completion of sentences from articles, documentation and information files on various technological topics.
 
 ### **About this program**
-This project, implements an algorithm that load the 2021-archive txt files, and then run a cmd which lets you to enter word, hit enter, than get five sentences with best adjustment to the entered value.
+This project, implements an algorithm that load the 2021-archive txt files, and then run a cmd which lets you to enter word, hit enter, than get five sentences with best adjustment to the entered value as follows.
+ ![](demo.gif)
 
 ### **Cope with mistakes at the entered word**
 

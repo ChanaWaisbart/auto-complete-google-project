@@ -11,3 +11,4 @@ if __name__ == '__main__':
         manager_program = ManagerProgram(path)
         manager_program.initialization()
         manager_program.run()
+
